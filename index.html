@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HIDDEN CLAW — Follow the money behind the token</title>
+  <meta name="description" content="HIDDEN CLAW watches every launch and scans the ones that raise real money: who holds it, who funded them, and who is selling." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="container">
+      <a href="index.html" class="logo">HIDDEN CLAW</a>
+      <nav>
+        <a href="screener/index.html">Screener</a>
+        <a href="investigate/index.html">Investigate</a>
+        <a href="account/index.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="live-strip">
+      <div class="container">
+        <div class="live-label">Live on the chain</div>
+        <div class="live-items" id="live-items"></div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Follow the money behind the token.</h1>
+        <p class="hero-desc">
+          HIDDEN CLAW watches every launch and scans the ones that raise real money: who holds it, who funded them, and who is selling.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" data-pay>Enter — 3 SOL</button>
+          <a href="screener/index.html" class="btn-secondary">Open the screener</a>
+        </div>
+        <p class="hero-note">Access requires a one-time payment of 3 SOL. No free tier. No delayed data.</p>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container stats-grid">
+        <div class="stat">
+          <div class="stat-value" id="launches-today">—</div>
+          <div class="stat-label">Launches seen today</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="scans-today">—</div>
+          <div class="stat-label">Scans today</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="wallets-record">—</div>
+          <div class="stat-label">Wallets on record</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="online-now">—</div>
+          <div class="stat-label">On HIDDEN CLAW now</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>What the checks caught</h2>
+        <p class="muted">A day after the scan. Median change in price, by level. Past outcomes are not a forecast, and a Low level does not mean safe.</p>
+        <div class="placeholder-box">Not enough scans have reached a day old yet.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>When a token matters, look deeper.</h2>
+        <p class="muted">Full access unlocks after the one-time 3 SOL payment. Every payment is recorded on-chain.</p>
+        <div class="plans">
+          <div class="plan featured">
+            <h3>Full Access</h3>
+            <div class="price">3 SOL</div>
+            <p>One-time payment</p>
+            <ul>
+              <li>Holder maps</li>
+              <li>Funding traced multiple steps back</li>
+              <li>Linked wallet groups</li>
+              <li>Smart wallets and whales</li>
+              <li>Liquidity status (burned / locked / pullable)</li>
+              <li>Simulated buy-and-sell checks</li>
+              <li>Creator history</li>
+              <li>Evidence-linked reports</li>
+              <li>Full screener access</li>
+            </ul>
+            <button class="btn-primary full-width" data-pay>Pay 3 SOL</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Every token HIDDEN CLAW has scanned, as facts you can filter.</h2>
+        <p class="muted">Open the screener after payment.</p>
+        <div class="placeholder-box">Screener unlocks after 3 SOL payment.</div>
+        <p class="mt-16"><a href="screener/index.html" class="btn-secondary">Open the screener →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="screener/index.html">Screener</a>
+        <a href="investigate/index.html">Investigate</a>
+        <a href="pricing/index.html">Pricing</a>
+        <a href="how-it-works/index.html">How it works</a>
+        <a href="roadmap/index.html">Roadmap</a>
+        <a href="changelog/index.html">Changelog</a>
+        <a href="stats/index.html">Stats</a>
+        <a href="agents/index.html">Agents</a>
+        <a href="developers/index.html">Developers</a>
+        <a href="account/index.html">Account</a>
+      </div>
+      <p class="footer-note">HIDDEN CLAW · Follow the money behind the token</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
