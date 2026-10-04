@@ -1,8 +1,4 @@
-// HIDDEN CLAW — product client + Solana payment + live prices
-
-const TREASURY = "YOUR_TREASURY_WALLET_ADDRESS_HERE";
-const ACCESS_PRICE_SOL = 3;
-const RPC = "https://api.mainnet-beta.solana.com";
+// HIDDEN CLAW — product client + live prices + auth helpers
 
 const liveExamples = [
   { name: "SI", note: "Its creator has 3+ earlier launches", time: "14s" },
@@ -42,7 +38,6 @@ async function fetchPrices() {
     );
     if (!res.ok) return;
     const data = await res.json();
-
     updateTicker("sol", data.solana);
     updateTicker("btc", data.bitcoin);
     updateTicker("eth", data.ethereum);
@@ -71,69 +66,6 @@ function updateTicker(key, info) {
   changeEl.className = "ticker-change " + (change >= 0 ? "up" : "down");
 }
 
-function getProvider() {
-  if ("solana" in window) {
-    const provider = window.solana;
-    if (provider.isPhantom) return provider;
-  }
-  window.open("https://phantom.app/", "_blank");
-  return null;
-}
-
-async function handlePay() {
-  const provider = getProvider();
-  if (!provider) {
-    alert("Phantom wallet is required. Install it and try again.");
-    return;
-  }
-
-  try {
-    const resp = await provider.connect();
-    const fromPubkey = resp.publicKey;
-
-    const paidKey = "hiddenclaw_paid_" + fromPubkey.toString();
-    if (localStorage.getItem(paidKey) === "true") {
-      alert("Access already unlocked for this wallet.");
-      window.location.href = "/screener/";
-      return;
-    }
-
-    if (TREASURY === "YOUR_TREASURY_WALLET_ADDRESS_HERE") {
-      alert("Treasury address not configured.\n\nOpen app.js and replace TREASURY with your Solana wallet address, then redeploy.");
-      return;
-    }
-
-    const connection = new solanaWeb3.Connection(RPC, "confirmed");
-    const toPubkey = new solanaWeb3.PublicKey(TREASURY);
-    const lamports = ACCESS_PRICE_SOL * solanaWeb3.LAMPORTS_PER_SOL;
-
-    const transaction = new solanaWeb3.Transaction().add(
-      solanaWeb3.SystemProgram.transfer({
-        fromPubkey,
-        toPubkey,
-        lamports,
-      })
-    );
-
-    const { blockhash } = await connection.getLatestBlockhash();
-    transaction.recentBlockhash = blockhash;
-    transaction.feePayer = fromPubkey;
-
-    const signed = await provider.signTransaction(transaction);
-    const signature = await connection.sendRawTransaction(signed.serialize());
-    await connection.confirmTransaction(signature, "confirmed");
-
-    localStorage.setItem(paidKey, "true");
-    localStorage.setItem("hiddenclaw_wallet", fromPubkey.toString());
-
-    alert("Payment confirmed.\nSignature: " + signature + "\n\nAccess unlocked.");
-    window.location.href = "/screener/";
-  } catch (err) {
-    console.error(err);
-    alert("Payment failed: " + (err.message || err));
-  }
-}
-
 const LOGO_SVG = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
   <circle cx="12" cy="12" r="3" fill="currentColor"/>
@@ -146,6 +78,14 @@ function injectLogos() {
   });
 }
 
+function isAuthenticated() {
+  return localStorage.getItem("hiddenclaw_auth") === "1" || sessionStorage.getItem("hiddenclaw_auth") === "1";
+}
+
+function getUser() {
+  return localStorage.getItem("hiddenclaw_user") || sessionStorage.getItem("hiddenclaw_user");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   injectLogos();
   renderLiveItems();
@@ -153,7 +93,12 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchPrices();
   setInterval(fetchPrices, 30000);
 
-  document.querySelectorAll("[data-pay]").forEach((btn) => {
-    btn.addEventListener("click", handlePay);
-  });
+  const user = getUser();
+  if (user) {
+    document.querySelectorAll(".nav-auth, a[href*='auth']").forEach((el) => {
+      if (el.textContent.trim() === "Sign in") {
+        el.textContent = user.split("@")[0];
+      }
+    });
+  }
 });
