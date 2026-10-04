@@ -5,15 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HIDDEN CLAW — Follow the money behind the token</title>
   <meta name="description" content="HIDDEN CLAW watches every launch and scans the ones that raise real money: who holds it, who funded them, and who is selling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="price-ticker">
+    <div class="container">
+      <div class="ticker-left">
+        <div class="ticker-item">
+          <span class="ticker-label">SOL</span>
+          <span class="ticker-value" id="price-sol">—</span>
+          <span class="ticker-change" id="change-sol">—</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-label">BTC</span>
+          <span class="ticker-value" id="price-btc">—</span>
+          <span class="ticker-change" id="change-btc">—</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-label">ETH</span>
+          <span class="ticker-value" id="price-eth">—</span>
+          <span class="ticker-change" id="change-eth">—</span>
+        </div>
+      </div>
+      <div class="ticker-status">
+        <span class="ticker-dot"></span>
+        <span>Live</span>
+      </div>
+    </div>
+  </div>
+
   <header class="top-bar">
     <div class="container">
-      <a href="index.html" class="logo">HIDDEN CLAW</a>
+      <a href="index.html" class="logo">
+        <span class="logo-mark"></span>
+        HIDDEN CLAW
+      </a>
       <nav>
         <a href="screener/index.html">Screener</a>
         <a href="investigate/index.html">Investigate</a>
+        <a href="how-it-works/index.html">How it works</a>
         <a href="account/index.html">Account</a>
       </nav>
     </div>
