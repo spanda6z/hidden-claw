@@ -1,6 +1,6 @@
-// HIDDEN CLAW — shared client logic + real Solana payment
+// HIDDEN CLAW — product client + Solana payment + live prices
 
-const TREASURY = "YOUR_TREASURY_WALLET_ADDRESS_HERE"; // <-- REPLACE with your Solana wallet
+const TREASURY = "YOUR_TREASURY_WALLET_ADDRESS_HERE";
 const ACCESS_PRICE_SOL = 3;
 const RPC = "https://api.mainnet-beta.solana.com";
 
@@ -33,6 +33,42 @@ function renderStats() {
     const el = document.getElementById(id);
     if (el) el.textContent = val;
   });
+}
+
+async function fetchPrices() {
+  try {
+    const res = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=solana,bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true"
+    );
+    if (!res.ok) return;
+    const data = await res.json();
+
+    updateTicker("sol", data.solana);
+    updateTicker("btc", data.bitcoin);
+    updateTicker("eth", data.ethereum);
+  } catch (e) {
+    console.warn("Price fetch failed", e);
+  }
+}
+
+function updateTicker(key, info) {
+  if (!info) return;
+  const priceEl = document.getElementById(`price-${key}`);
+  const changeEl = document.getElementById(`change-${key}`);
+  if (!priceEl || !changeEl) return;
+
+  const price = info.usd;
+  const change = info.usd_24h_change || 0;
+
+  if (key === "btc") {
+    priceEl.textContent = "$" + price.toLocaleString("en-US", { maximumFractionDigits: 0 });
+  } else {
+    priceEl.textContent = "$" + price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  const sign = change >= 0 ? "+" : "";
+  changeEl.textContent = sign + change.toFixed(2) + "%";
+  changeEl.className = "ticker-change " + (change >= 0 ? "up" : "down");
 }
 
 function getProvider() {
@@ -98,9 +134,24 @@ async function handlePay() {
   }
 }
 
+const LOGO_SVG = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+  <circle cx="12" cy="12" r="3" fill="currentColor"/>
+  <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>`;
+
+function injectLogos() {
+  document.querySelectorAll(".logo-mark").forEach((el) => {
+    el.innerHTML = LOGO_SVG;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  injectLogos();
   renderLiveItems();
   renderStats();
+  fetchPrices();
+  setInterval(fetchPrices, 30000);
 
   document.querySelectorAll("[data-pay]").forEach((btn) => {
     btn.addEventListener("click", handlePay);
