@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developers · HIDDEN CLAW</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="container">
+      <a href="../index.html" class="logo">HIDDEN CLAW</a>
+      <nav>
+        <a href="../screener/index.html">Screener</a>
+        <a href="../investigate/index.html">Investigate</a>
+        <a href="../account/index.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1>HIDDEN CLAW API</h1>
+        <p>What HIDDEN CLAW has found, for your bot, dashboard or site: token risk checks, creator records and live launches. Read-only.</p>
+      </div>
+    </div>
+
+    <section class="section" style="border-bottom:none;padding-top:32px;">
+      <div class="container">
+        <p class="muted">API access is included with the one-time 3 SOL payment. Keys are issued from the Account page after payment.</p>
+
+        <h3 class="mt-24">Endpoints (planned)</h3>
+        <div class="card-grid mt-16">
+          <div class="card">
+            <div class="card-title">GET /api/v1/tokens/{address}</div>
+            <div class="card-meta">Newest public scan of a token: level, findings, holders, creator record.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">GET /api/v1/creators/{address}</div>
+            <div class="card-meta">Launches one address has made and what became of them.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">GET /api/v1/launches</div>
+            <div class="card-meta">Live launches columns.</div>
+          </div>
+        </div>
+
+        <p class="mt-24 text-muted text-sm">Documentation will expand as the API ships.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="../screener/index.html">Screener</a>
+        <a href="../investigate/index.html">Investigate</a>
+        <a href="../pricing/index.html">Pricing</a>
+        <a href="../how-it-works/index.html">How it works</a>
+        <a href="../roadmap/index.html">Roadmap</a>
+        <a href="../changelog/index.html">Changelog</a>
+        <a href="../stats/index.html">Stats</a>
+        <a href="../agents/index.html">Agents</a>
+        <a href="index.html">Developers</a>
+        <a href="../account/index.html">Account</a>
+      </div>
+      <p class="footer-note">HIDDEN CLAW · Follow the money behind the token</p>
+    </div>
+  </footer>
+  <script src="../app.js"></script>
+</body>
+</html>
