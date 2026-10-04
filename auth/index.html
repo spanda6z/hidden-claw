@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in · HIDDEN CLAW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .auth-wrap {
+      min-height: calc(100vh - 120px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px 32px;
+    }
+    .auth-card h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .auth-card .sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 28px;
+      background: var(--bg);
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.15s;
+    }
+    .auth-tab.active {
+      background: var(--bg-elevated);
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .field {
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .field input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 11px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--border-light);
+    }
+    .field-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .checkbox-label input {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--text);
+    }
+    .bot-check {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .bot-check:hover {
+      border-color: var(--border-light);
+    }
+    .bot-check.checked {
+      border-color: var(--green);
+    }
+    .bot-check input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+    }
+    .bot-check span {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .bot-check.checked span {
+      color: var(--text);
+    }
+    .auth-submit {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    .auth-footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .auth-footer a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .auth-footer a:hover {
+      color: var(--text);
+    }
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
+    .error-msg {
+      color: var(--red);
+      font-size: 13px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .error-msg.show { display: block; }
+  </style>
+</head>
+<body>
+  <div class="price-ticker">
+    <div class="container">
+      <div class="ticker-left">
+        <div class="ticker-item">
+          <span class="ticker-label">SOL</span>
+          <span class="ticker-value" id="price-sol">—</span>
+          <span class="ticker-change" id="change-sol">—</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-label">BTC</span>
+          <span class="ticker-value" id="price-btc">—</span>
+          <span class="ticker-change" id="change-btc">—</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-label">ETH</span>
+          <span class="ticker-value" id="price-eth">—</span>
+          <span class="ticker-change" id="change-eth">—</span>
+        </div>
+      </div>
+      <div class="ticker-status">
+        <span class="ticker-dot"></span>
+        <span>Live</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="top-bar">
+    <div class="container">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark"></span>
+        HIDDEN CLAW
+      </a>
+      <nav>
+        <a href="../how-it-works/index.html">How it works</a>
+        <a href="../screener/index.html">Screener</a>
+        <a href="index.html" class="active">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1 id="auth-title">Sign in</h1>
+      <p class="sub" id="auth-sub">Access the screener and investigation tools.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-mode="signin">Sign in</button>
+        <button class="auth-tab" data-mode="signup">Sign up</button>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <form class="form-panel active" id="form-signin" onsubmit="return handleAuth(event, 'signin')">
+        <div class="field">
+          <label for="signin-email">Email</label>
+          <input type="email" id="signin-email" required placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="signin-password">Password</label>
+          <input type="password" id="signin-password" required placeholder="••••••••" autocomplete="current-password" />
+        </div>
+
+        <div class="field-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me" />
+            Remember me
+          </label>
+        </div>
+
+        <div class="bot-check" id="bot-check-signin" onclick="toggleBot(this)">
+          <input type="checkbox" id="not-bot-signin" />
+          <span>I’m not a bot</span>
+        </div>
+
+        <button type="submit" class="btn-primary auth-submit">Sign in</button>
+      </form>
+
+      <form class="form-panel" id="form-signup" onsubmit="return handleAuth(event, 'signup')">
+        <div class="field">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" required placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" required placeholder="••••••••" minlength="8" autocomplete="new-password" />
+        </div>
+        <div class="field">
+          <label for="signup-confirm">Confirm password</label>
+          <input type="password" id="signup-confirm" required placeholder="••••••••" minlength="8" autocomplete="new-password" />
+        </div>
+
+        <div class="field-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me-signup" />
+            Remember me
+          </label>
+        </div>
+
+        <div class="bot-check" id="bot-check-signup" onclick="toggleBot(this)">
+          <input type="checkbox" id="not-bot-signup" />
+          <span>I’m not a bot</span>
+        </div>
+
+        <button type="submit" class="btn-primary auth-submit">Create account</button>
+      </form>
+
+      <p class="auth-footer">
+        <a href="../how-it-works/index.html">Read how it works</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="../how-it-works/index.html">How it works</a>
+        <a href="../screener/index.html">Screener</a>
+        <a href="../investigate/index.html">Investigate</a>
+        <a href="../stats/index.html">Stats</a>
+        <a href="index.html">Sign in</a>
+      </div>
+      <p class="footer-note">HIDDEN CLAW · Follow the money behind the token</p>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    let mode = params.get("mode") === "signup" ? "signup" : "signin";
+
+    function setMode(m) {
+      mode = m;
+      document.querySelectorAll(".auth-tab").forEach(t => {
+        t.classList.toggle("active", t.dataset.mode === m);
+      });
+      document.getElementById("form-signin").classList.toggle("active", m === "signin");
+      document.getElementById("form-signup").classList.toggle("active", m === "signup");
+      document.getElementById("auth-title").textContent = m === "signin" ? "Sign in" : "Create account";
+      document.getElementById("auth-sub").textContent = m === "signin"
+        ? "Access the screener and investigation tools."
+        : "Create an account to access HIDDEN CLAW.";
+      document.getElementById("error-msg").classList.remove("show");
+    }
+
+    document.querySelectorAll(".auth-tab").forEach(t => {
+      t.addEventListener("click", () => setMode(t.dataset.mode));
+    });
+    setMode(mode);
+
+    function toggleBot(el) {
+      const cb = el.querySelector("input");
+      cb.checked = !cb.checked;
+      el.classList.toggle("checked", cb.checked);
+    }
+
+    function showError(msg) {
+      const el = document.getElementById("error-msg");
+      el.textContent = msg;
+      el.classList.add("show");
+    }
+
+    function handleAuth(e, type) {
+      e.preventDefault();
+      document.getElementById("error-msg").classList.remove("show");
+
+      if (type === "signin") {
+        const email = document.getElementById("signin-email").value.trim();
+        const password = document.getElementById("signin-password").value;
+        const notBot = document.getElementById("not-bot-signin").checked;
+        const remember = document.getElementById("remember-me").checked;
+
+        if (!notBot) {
+          showError("Please confirm you are not a bot.");
+          return false;
+        }
+        if (!email || !password) {
+          showError("Email and password are required.");
+          return false;
+        }
+
+        const storage = remember ? localStorage : sessionStorage;
+        storage.setItem("hiddenclaw_user", email);
+        storage.setItem("hiddenclaw_auth", "1");
+        window.location.href = "../screener/index.html";
+        return false;
+      }
+
+      if (type === "signup") {
+        const email = document.getElementById("signup-email").value.trim();
+        const password = document.getElementById("signup-password").value;
+        const confirm = document.getElementById("signup-confirm").value;
+        const notBot = document.getElementById("not-bot-signup").checked;
+        const remember = document.getElementById("remember-me-signup").checked;
+
+        if (!notBot) {
+          showError("Please confirm you are not a bot.");
+          return false;
+        }
+        if (password.length < 8) {
+          showError("Password must be at least 8 characters.");
+          return false;
+        }
+        if (password !== confirm) {
+          showError("Passwords do not match.");
+          return false;
+        }
+
+        const storage = remember ? localStorage : sessionStorage;
+        storage.setItem("hiddenclaw_user", email);
+        storage.setItem("hiddenclaw_auth", "1");
+        window.location.href = "../screener/index.html";
+        return false;
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
