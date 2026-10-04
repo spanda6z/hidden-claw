@@ -5,6 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How it works · HIDDEN CLAW</title>
   <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .how-content { max-width: 720px; }
+    .how-content h2 { margin-top: 48px; margin-bottom: 16px; font-size: 20px; }
+    .how-content h3 { margin-top: 32px; margin-bottom: 12px; font-size: 16px; }
+    .how-content p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+    .how-content ul, .how-content ol { color: var(--text-muted); margin-bottom: 16px; padding-left: 20px; line-height: 1.7; }
+    .how-content strong { color: var(--text); }
+    .diagram {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 24px;
+      margin: 24px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre;
+      overflow-x: auto;
+      color: var(--text-muted);
+    }
+    .step-num {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .closing {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+  </style>
 </head>
 <body>
   <header class="top-bar">
@@ -21,36 +58,258 @@
   <main>
     <div class="page-header">
       <div class="container">
-        <h1>How HIDDEN CLAW works.</h1>
-        <p>Each specialist examines one part of a token. Together, they reveal the connections.</p>
+        <h1>How it works</h1>
+        <p>We don’t chase the hype. We track the behavior behind it.</p>
       </div>
     </div>
 
-    <section class="section">
-      <div class="container">
-        <h2>What happens in a scan</h2>
-        <ol class="muted" style="padding-left:20px;line-height:1.9;max-width:600px;">
-          <li><strong>Snapshot</strong> — The token is read at one point in time. The report records the block and time so every balance belongs to the same moment.</li>
-          <li><strong>Holder map</strong> — Every holder the data provider returns goes on the map with its balance and share of the supply.</li>
-          <li><strong>Wallets investigated in depth</strong> — A smaller set of wallets has its funding and trades traced. The report names the set and says why those wallets were chosen.</li>
-          <li><strong>Specialist review</strong> — Specialists each read their own part of the evidence and write findings that cite the records they rely on.</li>
-          <li><strong>Challenge</strong> — Each finding is challenged with the ordinary explanation that fits the same records. Findings can be qualified, weakened or rejected.</li>
-          <li><strong>The report</strong> — What survived is written up. Unresolved disagreements stay visible. What was not covered is listed.</li>
-        </ol>
-      </div>
-    </section>
+    <section class="section" style="border-bottom:none;padding-top:40px;">
+      <div class="container how-content">
 
-    <section class="section" style="border-bottom:none;">
-      <div class="container">
-        <h2>The roles</h2>
-        <div class="card-grid mt-16">
-          <div class="card"><div class="card-title">Holder Analyst</div><div class="card-meta">Reviews the holder map and concentration.</div></div>
-          <div class="card"><div class="card-title">Funding Tracer</div><div class="card-meta">Follows where holder funds came from.</div></div>
-          <div class="card"><div class="card-title">Liquidity Checker</div><div class="card-meta">Determines whether liquidity can be pulled.</div></div>
-          <div class="card"><div class="card-title">Trading Historian</div><div class="card-meta">Decodes trades and timing patterns.</div></div>
-          <div class="card"><div class="card-title">Connection Scorer</div><div class="card-meta">Scores explainable relationship signals between wallets.</div></div>
-          <div class="card"><div class="card-title">Skeptic</div><div class="card-meta">Challenges every finding with the ordinary explanation.</div></div>
+        <p>
+          New tokens launch every second. Most traders only notice them after the market has already started moving.
+        </p>
+        <p>
+          HIDDEN CLAW starts earlier.
+        </p>
+        <p>
+          We track the wallets behind launches, study their previous behavior, monitor bundled activity and early allocations, and watch what happens in the first seconds and minutes after a token goes live.
+        </p>
+        <p>
+          Then we combine that intelligence with real-time volume, liquidity, holder growth, wallet concentration, developer activity, and safety signals.
+        </p>
+        <p>
+          The objective is simple:<br>
+          <strong>Identify unusual behavior early. Filter out weak opportunities. Act only when enough signals align.</strong>
+        </p>
+
+        <h2><span class="step-num">01 / Track</span><br>Follow the wallets, not just the tokens.</h2>
+        <p>Every launch has a story behind it.</p>
+        <p>
+          HIDDEN CLAW monitors developer wallets and wallet groups associated with repeated launches, looking for patterns in how they create, bundle, buy, hold, and distribute tokens.
+        </p>
+        <p>The system asks:</p>
+        <ul>
+          <li>Who launched it?</li>
+          <li>What have these wallets done before?</li>
+          <li>Are they repeating a recognizable pattern?</li>
+          <li>What are they doing right now?</li>
+        </ul>
+        <p>
+          Instead of treating every new token as a random opportunity, HIDDEN CLAW builds context around the wallets behind the launch.
+        </p>
+
+        <h2><span class="step-num">02 / Detect</span><br>Catch the market while it is still forming.</h2>
+        <p>Once a token launches, the first seconds and minutes can reveal important information.</p>
+        <p>HIDDEN CLAW continuously monitors:</p>
+        <ul>
+          <li>Early transaction flow</li>
+          <li>Bundled allocations</li>
+          <li>Initial buying behavior</li>
+          <li>Trading volume</li>
+          <li>Liquidity</li>
+          <li>Holder growth</li>
+          <li>Developer allocation</li>
+          <li>Wallet concentration</li>
+          <li>Market-cap movement</li>
+        </ul>
+        <p>
+          Unusually strong early volume can be an important signal. A token generating tens of thousands of dollars in early volume is not automatically a winner. But when that activity appears alongside the right wallet behavior, liquidity, holder growth, and safety conditions, the signal becomes much more meaningful.
+        </p>
+        <p>We’re not looking for the loudest token. We’re looking for the strongest combination of signals.</p>
+
+        <div class="diagram">LAUNCH
+  │
+  ├── 0–10s     Wallet activity
+  │
+  ├── 10–30s    Early buys / bundles
+  │
+  ├── 30–60s    Volume acceleration
+  │
+  ├── 1–2 min   Holder + liquidity growth
+  │
+  └── EARLY SIGNAL
+          ↓
+       ANALYZE</div>
+
+        <h2><span class="step-num">03 / Filter</span><br>Most launches never make it through.</h2>
+        <p>Thousands of tokens can launch. HIDDEN CLAW doesn’t need to trade thousands of them.</p>
+        <p>Every candidate must pass multiple conditions before it becomes actionable.</p>
+        <p><strong>MARKET → LIQUIDITY → VOLUME → AGE → HOLDERS → CONCENTRATION → DEVELOPER → SAFETY</strong></p>
+        <ul>
+          <li>Weak liquidity? Rejected.</li>
+          <li>Insufficient volume? Rejected.</li>
+          <li>Excessive concentration? Rejected.</li>
+          <li>Suspicious developer behavior? Rejected.</li>
+          <li>Missing or unreliable data? Rejected.</li>
+        </ul>
+        <p>Only candidates that satisfy the required conditions move forward.</p>
+        <p>The objective isn’t to predict every coin. It’s to eliminate as many weak opportunities as possible before capital is exposed.</p>
+
+        <div class="diagram">                     ┌── Weak liquidity → REJECTED
+                     │
+ALL LAUNCHES → FILTER ├── Low volume → REJECTED
+                     │
+                     ├── High concentration → REJECTED
+                     │
+                     ├── Suspicious developer → REJECTED
+                     │
+                     └── Missing data → REJECTED
+                             
+                              ↓
+                       QUALIFIED</div>
+
+        <h2><span class="step-num">04 / Execute</span><br>When the signal is ready, the decision is simple.</h2>
+        <p>Once a token passes the required conditions, the strategy moves from research to execution.</p>
+        <p><strong>QUALIFIED → ENTRY → VERIFY → POSITION TRACKING</strong></p>
+        <p>A transaction being submitted isn’t enough. The actual on-chain result matters.</p>
+        <p>
+          HIDDEN CLAW verifies the transaction, confirms the position, records the entry, and begins monitoring the trade.
+        </p>
+        <p>That creates a complete chain:</p>
+        <p><strong>Signal → Execution → Verification → Position</strong></p>
+        <p>Not simply: Signal → Buy</p>
+
+        <h2>The 2× Profit Protection</h2>
+        <p>Take the initial risk off the table.</p>
+        <p>The strategy can use a predefined 2× milestone to recover the initial capital.</p>
+        <p>For example:</p>
+        <div class="diagram">$100 ENTRY
+     ↓
+POSITION REACHES $200
+     ↓
+RECOVER THE INITIAL $100
+     ↓
+REMAINING POSITION STAYS OPEN</div>
+        <p>The remaining tokens become the potential moon bag.</p>
+        <p>
+          If the token continues higher, you maintain exposure. If it reverses afterward, the original capital has already been removed from the position.
+        </p>
+        <p>Actual execution can account for fees, slippage, liquidity, and available token balance.</p>
+        <p>This isn’t about perfectly selling the top. It’s about turning a winning move into a more disciplined position.</p>
+
+        <h2>Why the strategy can be selective</h2>
+        <p>The edge isn’t one signal. It’s the combination.</p>
+        <p>A strategy built around a single indicator can be fragile. HIDDEN CLAW combines multiple layers of information:</p>
+        <ul>
+          <li>Developer behavior</li>
+          <li>Wallet history</li>
+          <li>Launch activity</li>
+          <li>Bundle patterns</li>
+          <li>Early volume</li>
+          <li>Liquidity</li>
+          <li>Holder growth</li>
+          <li>Supply concentration</li>
+          <li>Safety checks</li>
+          <li>Position management</li>
+        </ul>
+        <p>
+          The more independent conditions that align, the more selective the setup becomes. That is where the potential for a high profitability rate comes from.
+        </p>
+        <p>Not from guessing. Not from buying everything. Not from assuming every token will pump. From being selective about what qualifies.</p>
+
+        <h2>The 90% Benchmark</h2>
+        <p>A 90% win rate isn’t assumed. It has to be earned.</p>
+        <p>
+          The goal isn’t to claim that every trade will be profitable. The goal is to build a system whose results can be measured.
+        </p>
+        <p>
+          If historical testing demonstrates that 90 out of 100 properly qualified setups reach the defined profitable outcome before the defined loss condition, then a 90% profitability figure becomes a measurable performance statistic.
+        </p>
+        <p>Until the data proves that number, 90% remains a target—not a guarantee.</p>
+        <p>
+          That’s important because HIDDEN CLAW shouldn’t ask users to simply believe a number. It should show the rules. Show the qualifying conditions. Show the risk management. And ultimately: show the results.
+        </p>
+
+        <h2>The Real Advantage</h2>
+        <p>Most traders watch the market. HIDDEN CLAW watches the behavior behind it.</p>
+        <p>A trader might see:</p>
+        <p><em>“New token is pumping.”</em></p>
+        <p>HIDDEN CLAW looks deeper:</p>
+        <p>
+          <em>“This wallet launched it. Associated wallets accumulated early. The launch showed a recognizable allocation pattern. Volume accelerated immediately. Liquidity meets the requirement. Holder growth is increasing. Concentration remains within limits. Safety checks passed.”</em>
+        </p>
+        <p>
+          That’s a fundamentally different way of looking at the market. You’re not simply following the crowd. You’re trying to understand why the crowd is arriving.
+        </p>
+
+        <h2>So how are you always so early?</h2>
+        <p>That’s the question everyone asks.</p>
+        <p>
+          “How did you find this coin so early?”<br>
+          “Why are you already in before everyone else?”<br>
+          “How do you keep finding these launches before they start moving?”
+        </p>
+        <p>The answer isn’t simply luck.</p>
+        <p>
+          HIDDEN CLAW isn’t waiting for a token to trend. It’s watching the behavior that happens before the trend.
+        </p>
+        <p>
+          While most traders are looking at charts, social media, and trending lists, HIDDEN CLAW is already monitoring the wallets behind new launches, their previous behavior, early allocations, bundled activity, volume, liquidity, holder growth, concentration, and safety signals.
+        </p>
+        <p>By the time everyone else sees:</p>
+        <p><em>“This coin is pumping.”</em></p>
+        <p>HIDDEN CLAW may already have seen:</p>
+        <p><em>“Something is happening here.”</em></p>
+        <p>That’s the difference.</p>
+        <p>You see the movement. HIDDEN CLAW watches what happens before the movement.</p>
+        <p>
+          The goal isn’t to predict the future. It’s to recognize a potentially important setup early enough to act before the opportunity becomes obvious to everyone else.
+        </p>
+        <p>And that’s why people keep asking:</p>
+        <p><strong>HOW ARE YOU ALWAYS SO EARLY?</strong></p>
+        <p>Because we’re not chasing the signal after it becomes popular.</p>
+        <p><strong>WE’RE WATCHING FOR THE SIGNAL BEFORE THE HYPE.</strong></p>
+
+        <h2>Behind the scenes</h2>
+        <div class="diagram">                    THE MARKET
+                       │
+                       │
+                 WHAT YOU SEE
+                       │
+                       ▼
+                ┌─────────────┐
+                │   PRICE     │
+                │   HYPE      │
+                │   TREND     │
+                └─────────────┘
+
+
+              WHAT HIDDEN CLAW SEES
+                       │
+        ┌──────────────┼──────────────┐
+        ↓              ↓              ↓
+   DEV WALLETS     LAUNCH DATA    EARLY VOLUME
+        │              │              │
+        └──────────────┼──────────────┘
+                       ↓
+                 WALLET PATTERNS
+                       ↓
+                 MARKET SIGNALS
+                       ↓
+                 SAFETY FILTERS
+                       ↓
+                  QUALIFIED
+                       ↓
+                    ENTRY
+                       ↓
+                  POSITION
+                       ↓
+                     2×
+                       ↓
+              CAPITAL RECOVERY
+                       ↓
+                  MOON BAG</div>
+
+        <div class="closing">
+          FOLLOW THE BEHAVIOR.<br>
+          NOT THE HYPE.
         </div>
+        <p style="margin-top:12px;">
+          Most traders watch the market.<br>
+          HIDDEN CLAW watches the behavior behind it.
+        </p>
+
       </div>
     </section>
   </main>
